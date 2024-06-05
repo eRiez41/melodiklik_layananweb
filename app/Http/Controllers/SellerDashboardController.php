@@ -1,14 +1,13 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class SellerDashboardController extends Controller
 {
     public function index()
     {
-        return view('home');
+        return view('seller.dashboard');
     }
 }
 

@@ -4,6 +4,15 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\BarangController;
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SellerDashboardController;
+use App\Http\Controllers\AdminDashboardController;
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/dashboard/seller', [SellerDashboardController::class, 'index'])->name('seller.dashboard');
+Route::get('/dashboard/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+
 Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
 
 Route::middleware('auth')->group(function () {
