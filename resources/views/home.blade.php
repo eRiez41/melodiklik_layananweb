@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Melodiklik - Home</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"> <!-- Menambahkan FontAwesome -->
     <style>
         body {
             background-color: #f4f1e9;
@@ -41,6 +42,10 @@
         .navbar .form-control {
             margin-right: 15px;
         }
+        .navbar .nav-link i {
+            font-size: 24px; /* Membuat ikon lebih besar */
+            margin-right: 10px; /* Menambahkan jarak antara ikon */
+        }
         .category-buttons {
             background-color: #f4f1e9;
             padding: 20px 0;
@@ -57,9 +62,12 @@
             align-items: center;
             padding: 20px;
             border-radius: 50%;
+            width: 100px; /* Menyelaraskan ukuran */
+            height: 100px; /* Menyelaraskan ukuran */
         }
         .category-buttons .btn i {
             font-size: 24px;
+            margin-bottom: 10px; /* Menambahkan jarak antara ikon dan teks */
         }
         .product-card {
             background-color: #fff;
@@ -81,6 +89,22 @@
             border: none;
             margin: 20px;
         }
+        .dropdown .dropdown-menu {
+            background-color: #2b463c; /* Warna dropdown */
+            color: #fff;
+        }
+        .dropdown .dropdown-item {
+            color: #fff;
+        }
+        .dropdown .dropdown-item:hover {
+            background-color: #b1d182;
+            color: #2b463c;
+        }
+        .dropdown-toggle {
+            background-color: #2b463c !important; /* Warna dropdown button */
+            color: #fff !important;
+            border: none;
+        }
     </style>
 </head>
 <body>
@@ -96,49 +120,74 @@
     <nav class="navbar">
         <div class="d-flex align-items-center">
             <div class="nav-item dropdown mr-3">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn dropdown-toggle" type="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     Kategori
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Elektrik</a>
-                    <a class="dropdown-item" href="#">Akustik</a>
-                    <a class="dropdown-item" href="#">Bass</a>
-                    <a class="dropdown-item" href="#">Aksesoris</a>
-                </div>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Elektrik</a></li>
+                    <li><a class="dropdown-item" href="#">Akustik</a></li>
+                    <li><a class="dropdown-item" href="#">Bass</a></li>
+                    <li><a class="dropdown-item" href="#">Aksesoris</a></li>
+                </ul>
             </div>
             <input type="text" class="form-control" placeholder="Cari...">
         </div>
         <div class="d-flex align-items-center">
-            <a class="nav-link" href="#"><i class="fas fa-heart"></i> Wishlist</a> <!-- Menambahkan icon -->
-            <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> Keranjang</a> <!-- Menambahkan icon -->
-            <a class="nav-link" href="#"><i class="fas fa-user"></i> User</a> <!-- Menambahkan icon -->
+            <a class="nav-link" href="#"><i class="fas fa-heart"></i></a> <!-- Menambahkan icon dan menghilangkan label -->
+            <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a> <!-- Menambahkan icon dan menghilangkan label -->
+            <a class="nav-link" href="#"><i class="fas fa-user"></i></a> <!-- Menambahkan icon dan menghilangkan label -->
         </div>
     </nav>
 
     <div class="container-fluid category-buttons">
         <button class="btn"><i class="fas fa-guitar"></i> <span>Elektrik</span></button> <!-- Menambahkan icon -->
         <button class="btn"><i class="fas fa-music"></i> <span>Akustik</span></button> <!-- Menambahkan icon -->
-        <button class="btn"><i class="fas fa-bass-guitar"></i> <span>Bass</span></button> <!-- Menambahkan icon -->
+        <button class="btn"><i class="fas fa-guitar"></i> <span>Bass</span></button> <!-- Menambahkan icon -->
         <button class="btn"><i class="fas fa-headphones-alt"></i> <span>Aksesoris</span></button> <!-- Menambahkan icon -->
     </div>
 
     <div class="container">
         <div class="row">
-            <!-- Dummy data for products -->
-            @for ($i = 0; $i < 5; $i++)
-                <div class="col-md-3">
-                    <div class="card product-card">
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
-                        <div class="card-body">
-                            <h5 class="card-title">Gitar Akustik</h5>
-                            <p class="card-text">Rp 1.500.000</p>
-                        </div>
+            <!-- Produk asli -->
+            <div class="col-md-3">
+                <div class="card product-card">
+                    <img src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/91/MTA-127230354/brd-44261_gitar-elektrik-merk-ibanez-model-jem-flower-bonus-tas-dan-kabel-jack-listrik-murah-jakarta_full01-4c5445d2.jpg" class="card-img-top" alt="Gitar Elektrik">
+                    <div class="card-body">
+                        <h5 class="card-title">Gitar Elektrik</h5>
+                        <p class="card-text">Rp 2.000.000</p>
                     </div>
                 </div>
-            @endfor
+            </div>
+            <div class="col-md-3">
+                <div class="card product-card">
+                    <img src="https://static-siplah.blibli.com/data/images/SBST-0024-00043/11367eed-e991-4cb0-b13c-759c2c5845e3.jpg" class="card-img-top" alt="Gitar Akustik">
+                    <div class="card-body">
+                        <h5 class="card-title">Gitar Akustik</h5>
+                        <p class="card-text">Rp 1.500.000</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card product-card">
+                    <img src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//94/MTA-3696105/yamaha_yamaha-trbx174-gitar-bass-electric---hitam_full03.jpg" class="card-img-top" alt="Gitar Bass">
+                    <div class="card-body">
+                        <h5 class="card-title">Gitar Bass</h5>
+                        <p class="card-text">Rp 2.500.000</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card product-card">
+                    <img src="https://www.sweelee.co.id/cdn/shop/products/products_2FI01-AEG7MH-OPN_2FI01-AEG7MH-OPN_1581489652420_600x600.jpg?v=1634630727" class="card-img-top" alt="Aksesoris">
+                    <div class="card-body">
+                        <h5 class="card-title">Gitar Ibanez</h5>
+                        <p class="card-text">Rp 2.500.000</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="text-center">
-            <button class="btn btn-view-all">Lihat Semua</button>
+        <div class="text-end">
+            <button class="btn btn-view-all">Lihat Semua</button> <!-- Pindah ke kanan -->
         </div>
     </div>
 
