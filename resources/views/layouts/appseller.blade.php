@@ -114,13 +114,14 @@
             color: #fff !important;
             border: none;
         }
+
         /* Tambahkan CSS untuk modal profil */
         .modal-content {
-            background-color: #2b463c;
-            color: #fff;
+            background-color: #2b463c !important;
+            color: #fff !important;
         }
         .modal-footer .btn {
-            background-color: #fff;
+            background-color: #b1d182;
             color: #2b463c;
             border: none;
         }
@@ -146,6 +147,19 @@
             border-color: #b1d182;
             color: #fff;
         }
+        .profile-info .form-label {
+            color: #fff;
+        }
+        .profile-info .input-group-text {
+            background-color: #2b463c;
+            border-color: #fff;
+            color: #fff;
+        }
+        .profile-info .input-group-text:focus {
+            background-color: #2b463c;
+            border-color: #b1d182;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -161,32 +175,18 @@
     <nav class="navbar">
         <div class="container d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
-                <div class="nav-item dropdown mr-3">
-                    <button class="btn dropdown-toggle" type="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        Kategori
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#" onclick="filterBarang('Elektrik')">Elektrik</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="filterBarang('Akustik')">Akustik</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="filterBarang('Bass')">Bass</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="filterBarang('Aksesoris')">Aksesoris</a></li>
-                    </ul>
-                </div>
+                
                 <input type="text" class="form-control" placeholder="Cari...">
             </div>
             <div class="d-flex align-items-center">
-                <a class="nav-link" href="{{ route('wishlist') }}"><i class="fas fa-heart"></i></a>
-                <a class="nav-link" href="{{ route('cart') }}"><i class="fas fa-shopping-cart"></i></a>
+                <a class="nav-link" href="{{ route('seller.dashboard') }}"> Dashboard</a>
+                <a class="nav-link" href="{{ route('penjualan') }}">Penjualan</a>
+                <a class="nav-link" href="{{ route('barang.seller') }}">Barang</a>
                 <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="fas fa-user"></i></a>
             </div>
         </div>
     </nav>
-    <div class="container-fluid category-buttons">
-        <button class="btn active" onclick="filterBarang('Elektrik')"><i class="fas fa-guitar"></i> <span>Elektrik</span></button>
-        <button class="btn" onclick="filterBarang('Akustik')"><i class="fas fa-music"></i> <span>Akustik</span></button>
-        <button class="btn" onclick="filterBarang('Bass')"><i class="fas fa-guitar"></i> <span>Bass</span></button>
-        <button class="btn" onclick="filterBarang('Aksesoris')"><i class="fas fa-headphones-alt"></i> <span>Aksesoris</span></button>
-    </div>
+    
 
     <!-- Modal Profil -->
     <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
@@ -198,55 +198,56 @@
                 </div>
                 <div class="modal-body d-flex align-items-start">
                     <div class="text-center">
-                        <img src="https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg" alt="Foto Profil" class="img-thumbnail profile-image">
+                        <img id="profileImage" src="https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg" alt="Foto Profil" class="img-thumbnail profile-image">
+                        <input type="file" id="profileImageInput" style="display: none;" accept="image/*">
                     </div>
                     <form id="profileForm" class="profile-form">
                         <div class="mb-3">
-                            <label for="profileName" class="form-label">Nama</label>
-                            <input type="text" class="form-control profile-info" id="profileName" value="Nama Anda" readonly>
+                            <label for="profileName" class="form-label">Nama :</label>
+                            <span class="profile-info" id="profileName">MelodiKlik</span>
+                            <input type="text" class="form-control" id="profileNameInput" style="display: none;">
                         </div>
                         <div class="mb-3">
-                            <label for="profileEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control profile-info" id="profileEmail" value="email@example.com" readonly>
+                            <label for="profileEmail" class="form-label">Email :</label>
+                            <span class="profile-info" id="profileEmail">melodiklik@gmail.com</span>
+                            <input type="email" class="form-control" id="profileEmailInput" style="display: none;">
                         </div>
                         <div class="mb-3">
-                            <label for="profileAddress" class="form-label">Alamat</label>
-                            <input type="text" class="form-control profile-info" id="profileAddress" value="Alamat Anda" readonly>
+                            <label for="profileAddress" class="form-label">Alamat :</label>
+                            <span class="profile-info" id="profileAddress">Singaparna, Jawa Barat</span>
+                            <input type="text" class="form-control" id="profileAddressInput" style="                            display: none;">
                         </div>
                         <div class="mb-3">
-                            <label for="profilePhone" class="form-label">No. Telepon</label>
-                            <input type="text" class="form-control profile-info" id="profilePhone" value="Nomor Telepon Anda" readonly>
+                            <label for="profilePhone" class="form-label">No. Telepon :</label>
+                            <span class="profile-info" id="profilePhone">087624556715</span>
+                            <input type="text" class="form-control" id="profilePhoneInput" style="display: none;">
+                        </div>
+                        <div id="passwordFields" style="display: none;">
+                            <div class="mb-3">
+                                <label for="currentPassword" class="form-label">Sandi Sekarang :</label>
+                                <input type="password" class="form-control" id="currentPassword">
+                            </div>
+                            <div class="mb-3">
+                                <label for="newPassword" class="form-label">Sandi Baru :</label>
+                                <input type="password" class="form-control" id="newPassword">
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label">Konfirmasi Sandi Baru :</label>
+                                <input type="password" class="form-control" id="confirmPassword">
+                            </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                     <button type="button" class="btn btn-primary" id="editProfileButton">Edit Profil</button>
+                    <button type="button" class="btn btn-secondary" id="logoutButton">Logout</button>
                     <button type="button" class="btn btn-primary" id="saveProfileButton" style="display: none;">Simpan Perubahan</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            @foreach ($barang as $item)
-                <div class="col-md-3 product-card-wrapper" data-kategori="{{ $item['kategori'] }}">
-                    <a href="{{ route('barang.show', $item['id']) }}" class="card product-card">
-                        <img src="{{ $item['gambar'] }}" class="card-img-top" alt="{{ $item['nama'] }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $item['nama'] }}</h5>
-                            <p class="card-text">Rp {{ number_format($item['harga'], 0, ',', '.') }}</p>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
-        </div>
-        <div class="text-end">
-            <button class="btn btn-view-all" onclick="showAllBarang()">Lihat Semua</button>
-        </div>
-    </div>
-
+    @yield('content')
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
@@ -273,19 +274,48 @@
             filterBarang(activeCategory);
 
             $('#editProfileButton').click(function() {
-                $('#profileName, #profileEmail, #profileAddress, #profilePhone').prop('readonly', false);
+                $('#profileName, #profileEmail, #profileAddress, #profilePhone').hide();
+                $('#profileNameInput, #profileEmailInput, #profileAddressInput, #profilePhoneInput, #passwordFields').show();
+                $('#profileNameInput').val($('#profileName').text());
+                $('#profileEmailInput').val($('#profileEmail').text());
+                $('#profileAddressInput').val($('#profileAddress').text());
+                $('#profilePhoneInput').val($('#profilePhone').text());
+
                 $('#profileModalLabel').text('Edit Profil');
-                $(this).hide();
-                $('.modal-footer').prepend('<button type="button" class="btn btn-primary" id="saveProfileButton">Simpan</button>');
+                $('#editProfileButton').hide();
+                $('#logoutButton').hide();
+                $('#saveProfileButton').show();
             });
 
-            $(document).on('click', '#saveProfileButton', function() {
-                $('#profileName, #profileEmail, #profileAddress, #profilePhone').prop('readonly', true);
+            $('#saveProfileButton').click(function() {
+                $('#profileName').text($('#profileNameInput').val()).show();
+                $('#profileEmail').text($('#profileEmailInput').val()).show();
+                $('#profileAddress').text($('#profileAddressInput').val()).show();
+                $('#profilePhone').text($('#profilePhoneInput').val()).show();
+
+                $('#profileNameInput, #profileEmailInput, #profileAddressInput, #profilePhoneInput, #passwordFields').hide();
                 $('#profileModalLabel').text('Profil');
                 $('#editProfileButton').show();
-                $(this).remove();
+                $('#logoutButton').show();
+                $('#saveProfileButton').hide();
+            });
+
+            $('#profileImage').click(function() {
+                $('#profileImageInput').click();
+            });
+
+            $('#profileImageInput').change(function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#profileImage').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(file);
+                }
             });
         });
     </script>
 </body>
 </html>
+

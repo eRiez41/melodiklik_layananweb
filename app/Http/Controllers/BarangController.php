@@ -63,4 +63,8 @@ class BarangController extends Controller
 
         return view('barang.show', compact('barang'));
     }
+
+    
 }
+
+
