@@ -44,22 +44,19 @@ Route::get('admin/transactions', function () {
     return view('admin.transactions');
 });
 
-// Rute untuk halaman wishlist
 Route::get('/wishlist', function () {
     return view('wishlist');
 })->name('wishlist');
 
-// Rute untuk halaman keranjang
-Route::get('/keranjang', function () {
-    return view('keranjang');
-})->name('keranjang');
+Route::get('/cart', function () {
+    return view('cart');
+})->name('cart');
+
+Route::get('/profile', function () {
+    return view('profile');
+})->name('profile');
 
 
-// Rute untuk halaman profil
-Route::get('/profil', function () {
-    // Logic untuk halaman profil, bisa juga menggunakan controller
-    return view('profil');
-})->name('profil');
 
 Route::get('/barang/{id}', [BarangController::class, 'show'])->name('barang.show');
 
@@ -91,3 +88,25 @@ Route::get('/login', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/wishlist', function () {
+    $wishlistItems = [
+        ['id' => 1, 'name' => 'Gitar Elektrik', 'price' => 1500000, 'image' => 'path/to/image1.jpg'],
+        ['id' => 2, 'name' => 'Gitar Akustik', 'price' => 1200000, 'image' => 'path/to/image2.jpg'],
+        // Tambahkan item wishlist lainnya
+    ];
+    return view('wishlist', compact('wishlistItems'));
+})->name('wishlist');
+
+Route::get('/cart', function () {
+    $cartItems = [
+        ['id' => 1, 'name' => 'Gitar Elektrik', 'price' => 1500000, 'quantity' => 1, 'image' => 'path/to/image1.jpg'],
+        ['id' => 2, 'name' => 'Gitar Akustik', 'price' => 1200000, 'quantity' => 2, 'image' => 'path/to/image2.jpg'],
+        // Tambahkan item keranjang lainnya
+    ];
+    $total = array_reduce($cartItems, function($carry, $item) {
+        return $carry + ($item['price'] * $item['quantity']);
+    }, 0);
+    return view('cart', compact('cartItems', 'total'));
+})->name('cart');
