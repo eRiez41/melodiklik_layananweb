@@ -1,11 +1,12 @@
+<!-- resources/views/layouts/app.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Melodiklik - Home</title>
+    <title>@yield('title')</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"> <!-- Menambahkan FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         body {
             background-color: #f4f1e9;
@@ -19,7 +20,7 @@
             align-items: center;
         }
         .header h1 {
-            font-size: 24px; /* Memperkecil tulisan Melodiklik */
+            font-size: 24px;
         }
         .header .location {
             display: flex;
@@ -43,8 +44,8 @@
             margin-right: 15px;
         }
         .navbar .nav-link i {
-            font-size: 24px; /* Membuat ikon lebih besar */
-            margin-right: 10px; /* Menambahkan jarak antara ikon */
+            font-size: 24px;
+            margin-right: 10px;
         }
         .category-buttons {
             background-color: #f4f1e9;
@@ -62,12 +63,12 @@
             align-items: center;
             padding: 20px;
             border-radius: 50%;
-            width: 100px; /* Menyelaraskan ukuran */
-            height: 100px; /* Menyelaraskan ukuran */
+            width: 100px;
+            height: 100px;
         }
         .category-buttons .btn i {
             font-size: 24px;
-            margin-bottom: 10px; /* Menambahkan jarak antara ikon dan teks */
+            margin-bottom: 10px;
         }
         .product-card {
             background-color: #fff;
@@ -88,13 +89,13 @@
             color: #fff;
             border: none;
             margin: 20px;
-            padding: 10px 20px; /* Menambahkan padding */
-            border-radius: 5px; /* Menambahkan border-radius */
+            padding: 10px 20px;
+            border-radius: 5px;
         }
         .dropdown .dropdown-menu {
-            background-color: #2b463c; /* Warna dropdown */
+            background-color: #2b463c;
             color: #fff;
-            margin-top: 5px; /* Menambahkan jarak atas */
+            margin-top: 5px;
         }
         .dropdown .dropdown-item {
             color: #fff;
@@ -104,7 +105,7 @@
             color: #2b463c;
         }
         .dropdown-toggle {
-            background-color: #2b463c !important; /* Warna dropdown button */
+            background-color: #2b463c !important;
             color: #fff !important;
             border: none;
         }
@@ -113,10 +114,10 @@
 <body>
     <header class="header">
         <div>
-            <h1>Melodiklik</h1>
+            <h1><a href="{{ route('home') }}" style="color: #fff; text-decoration: none;">Melodiklik</a></h1>
         </div>
         <div class="location">
-            <i class="fas fa-map-marker-alt"></i> Tasikmalaya <!-- Menambahkan icon maps -->
+            <i class="fas fa-map-marker-alt"></i> Tasikmalaya
         </div>
     </header>
 
@@ -136,12 +137,11 @@
             <input type="text" class="form-control" placeholder="Cari...">
         </div>
         <div class="d-flex align-items-center">
-            <a class="nav-link" href="#"><i class="fas fa-heart"></i></a> <!-- Menambahkan icon dan menghilangkan label -->
-            <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a> <!-- Menambahkan icon dan menghilangkan label -->
-            <a class="nav-link" href="#"><i class="fas fa-user"></i></a> <!-- Menambahkan icon dan menghilangkan label -->
+            <a class="nav-link" href="#"><i class="fas fa-heart"></i></a>
+            <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
+            <a class="nav-link" href="#"><i class="fas fa-user"></i></a>
         </div>
     </nav>
-
     <div class="container-fluid category-buttons">
         <button class="btn" onclick="filterBarang('Elektrik')"><i class="fas fa-guitar"></i> <span>Elektrik</span></button> <!-- Menambahkan icon -->
         <button class="btn" onclick="filterBarang('Akustik')"><i class="fas fa-music"></i> <span>Akustik</span></button> <!-- Menambahkan icon -->
@@ -153,20 +153,21 @@
         <div class="row">
             @foreach ($barang as $item)
                 <div class="col-md-3 product-card-wrapper" data-kategori="{{ $item['kategori'] }}">
-                    <div class="card product-card">
+                    <a href="{{ route('barang.show', $item['id']) }}" class="card product-card">
                         <img src="{{ $item['gambar'] }}" class="card-img-top" alt="{{ $item['nama'] }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $item['nama'] }}</h5>
                             <p class="card-text">Rp {{ number_format($item['harga'], 0, ',', '.') }}</p>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @endforeach
         </div>
         <div class="text-end">
-            <button class="btn btn-view-all">Lihat Semua</button> <!-- Pindah ke kanan -->
+            <button class="btn btn-view-all">Lihat Semua</button>
         </div>
     </div>
+
 
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
