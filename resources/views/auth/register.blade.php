@@ -118,5 +118,19 @@
     </div>
     <br><br>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Function to handle form submission
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Perform registration logic here (e.g., send data to server)
+
+            // Display alert
+            alert('Registration successful! You will now be redirected to the login page.');
+
+            // Redirect to login page
+            window.location.href = "/login";
+        });
+    </script>
 </body>
 </html>

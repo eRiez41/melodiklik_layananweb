@@ -86,6 +86,12 @@ Route::get('/login', function () {
 });
 
 
+Route::get('/lupa', function () {
+    // logic untuk halaman lupa kata sandi, bisa juga menggunakan controller
+    return view('auth.lupa');
+});
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

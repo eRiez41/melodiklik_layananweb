@@ -86,12 +86,12 @@
                                     <input type="password" class="form-control" id="password" name="password" required placeholder="Enter your password">
                                 </div>
                                 <div class="mb-3 text-center">
-                                    <a href="#" class="text-decoration-none">Lupa Kata Sandi?</a>
+                                <a href="/lupa" class="text-decoration-none">Lupa Kata Sandi?</a>
                                 </div>
                                 <button type="submit" class="btn btn-primary w-100">Masuk</button>
                             </form>
                             <div class="mt-3 text-center">
-                                Belum Punya Akun? <a href="#" class="text-decoration-none" style="color:#b1d182 ";>Klik di sini</a>
+                                Belum Punya Akun? <a href="/register" class="text-decoration-none" style="color:#b1d182 ";>Klik di sini</a>
                             </div>
                         </div>
                     </div>
