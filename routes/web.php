@@ -61,6 +61,7 @@ Route::get('/profil', function () {
     return view('profil');
 })->name('profil');
 
+Route::get('/barang/{id}', [BarangController::class, 'show'])->name('barang.show');
 
 Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
 
