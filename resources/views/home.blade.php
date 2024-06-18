@@ -1,4 +1,3 @@
-<!-- resources/views/layouts/app.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,9 +31,6 @@
         .navbar {
             background-color: #b1d182;
             padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
         .navbar .nav-item .nav-link {
             color: #2b463c;
@@ -46,6 +42,9 @@
         .navbar .nav-link i {
             font-size: 24px;
             margin-right: 10px;
+        }
+        .navbar .container .d-flex > *:not(:last-child) {
+            margin-right: 15px; /* Menambahkan jarak antar elemen dalam navbar */
         }
         .category-buttons {
             background-color: #f4f1e9;
@@ -65,6 +64,11 @@
             border-radius: 50%;
             width: 100px;
             height: 100px;
+            cursor: pointer;
+        }
+        .category-buttons .btn.active {
+            background-color: #b1d182;
+            color: #2b463c;
         }
         .category-buttons .btn i {
             font-size: 24px;
@@ -91,6 +95,7 @@
             margin: 20px;
             padding: 10px 20px;
             border-radius: 5px;
+            cursor: pointer;
         }
         .dropdown .dropdown-menu {
             background-color: #2b463c;
@@ -122,31 +127,73 @@
     </header>
 
     <nav class="navbar">
-        <div class="d-flex align-items-center">
-            <div class="nav-item dropdown mr-3">
-                <button class="btn dropdown-toggle" type="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    Kategori
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#" onclick="filterBarang('Elektrik')">Elektrik</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="filterBarang('Akustik')">Akustik</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="filterBarang('Bass')">Bass</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="filterBarang('Aksesoris')">Aksesoris</a></li>
-                </ul>
+        <div class="container d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <div class="nav-item dropdown mr-3">
+                    <button class="btn dropdown-toggle" type="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        Kategori
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#" onclick="filterBarang('Elektrik')">Elektrik</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="filterBarang('Akustik')">Akustik</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="filterBarang('Bass')">Bass</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="filterBarang('Aksesoris')">Aksesoris</a></li>
+                    </ul>
+                </div>
+                <input type="text" class="form-control" placeholder="Cari...">
             </div>
-            <input type="text" class="form-control" placeholder="Cari...">
-        </div>
-        <div class="d-flex align-items-center">
-            <a class="nav-link" href="#"><i class="fas fa-heart"></i></a>
-            <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
-            <a class="nav-link" href="#"><i class="fas fa-user"></i></a>
+            <div class="d-flex align-items-center">
+                <a class="nav-link" href="{{ route('wishlist') }}"><i class="fas fa-heart"></i></a>
+                <a class="nav-link" href="{{ route('cart') }}"><i class="fas fa-shopping-cart"></i></a>
+                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="fas fa-user"></i></a>
+            </div>
         </div>
     </nav>
     <div class="container-fluid category-buttons">
-        <button class="btn" onclick="filterBarang('Elektrik')"><i class="fas fa-guitar"></i> <span>Elektrik</span></button> <!-- Menambahkan icon -->
-        <button class="btn" onclick="filterBarang('Akustik')"><i class="fas fa-music"></i> <span>Akustik</span></button> <!-- Menambahkan icon -->
-        <button class="btn" onclick="filterBarang('Bass')"><i class="fas fa-guitar"></i> <span>Bass</span></button> <!-- Menambahkan icon -->
-        <button class="btn" onclick="filterBarang('Aksesoris')"><i class="fas fa-headphones-alt"></i> <span>Aksesoris</span></button> <!-- Menambahkan icon -->
+        <button class="btn active" onclick="filterBarang('Elektrik')"><i class="fas fa-guitar"></i> <span>Elektrik</span></button>
+        <button class="btn" onclick="filterBarang('Akustik')"><i class="fas fa-music"></i> <span>Akustik</span></button>
+        <button class="btn" onclick="filterBarang('Bass')"><i class="fas fa-guitar"></i> <span>Bass</span></button>
+        <button class="btn" onclick="filterBarang('Aksesoris')"><i class="fas fa-headphones-alt"></i> <span>Aksesoris</span></button>
+    </div>
+
+    <!-- Modal Profil -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">Profil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-3">
+                        <img src="path_to_profile_image" alt="Foto Profil" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;">
+                    </div>
+                    <form id="profileForm">
+                        <div class="mb-3">
+                            <label for="profileName" class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="profileName" value="Nama Anda" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="profileEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="profileEmail" value="email@example.com" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="profileAddress" class="form-label">Alamat</label>
+                            <input type="text" class="form-control" id="profileAddress" value="Alamat Anda" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="profilePhone" class="form-label">No. Telepon</label>
+                            <input type="text" class="form-control" id="profilePhone" value="Nomor Telepon Anda" readonly>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary" id="editProfileButton">Edit</button>
+                    <a href="{{ route('logout') }}" class="btn btn-danger">Logout</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="container">
@@ -164,21 +211,48 @@
             @endforeach
         </div>
         <div class="text-end">
-            <button class="btn btn-view-all">Lihat Semua</button>
+            <button class="btn btn-view-all" onclick="showAllBarang()">Lihat Semua</button>
         </div>
     </div>
-
 
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
     <script>
+        let activeCategory = 'Elektrik';
+
         function filterBarang(kategori) {
-            $('.product-card-wrapper').hide(); // Sembunyikan semua kartu produk
-            $(`.product-card-wrapper[data-kategori="${kategori}"]`).show(); // Tampilkan kartu produk yang sesuai kategori
+            activeCategory = kategori;
+            $('.product-card-wrapper').hide();
+            $(`.product-card-wrapper[data-kategori="${kategori}"]`).show();
+            setActiveCategory(kategori);
         }
+
+        function showAllBarang() {
+            $('.product-card-wrapper').show();
+        }
+
+        function setActiveCategory(kategori) {
+            $('.category-buttons .btn').removeClass('active');
+            $(`.category-buttons .btn:contains(${kategori})`).addClass('active');
+        }
+
         $(document).ready(function() {
-            filterBarang('Elektrik'); // Default menampilkan kategori Elektrik
+            filterBarang(activeCategory);
+
+            $('#editProfileButton').click(function() {
+                $('#profileName, #profileEmail, #profileAddress, #profilePhone').prop('readonly', false);
+                $('#profileModalLabel').text('Edit Profil');
+                $(this).hide();
+                $('.modal-footer').prepend('<button type="button" class="btn btn-primary" id="saveProfileButton">Simpan</button>');
+            });
+
+            $(document).on('click', '#saveProfileButton', function() {
+                $('#profileName, #profileEmail, #profileAddress, #profilePhone').prop('readonly', true);
+                $('#profileModalLabel').text('Profil');
+                $('#editProfileButton').show();
+                $(this).remove();
+            });
         });
     </script>
 </body>
