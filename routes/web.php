@@ -154,3 +154,11 @@ Route::get('/barang-seller', function () {
 
     return view('seller.barang', ['barangna' => $barangna]);
 })->name('barang.seller');
+
+Route::get('/checkout', function () {
+    return view('checkout');
+})->name('checkout');
+
+Route::get('/transaksi/proses', function () {
+    return view('transaksi');
+})->name('transaksi.proses');

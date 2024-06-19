@@ -160,12 +160,18 @@
             border-color: #b1d182;
             color: #fff;
         }
+
+        .nav-link.active {
+    font-weight: bold;
+    color: #2b463c; /* Atau warna yang diinginkan untuk menunjukkan aktif */
+}
+
     </style>
 </head>
 <body>
     <header class="header">
         <div>
-            <h1><a href="{{ route('home') }}" style="color: #fff; text-decoration: none;">Melodiklik</a></h1>
+            <h1><a href="{{ route('seller.dashboard') }}" style="color: #fff; text-decoration: none;">Melodiklik-Seller</a></h1>
         </div>
         <div class="location">
             <i class="fas fa-map-marker-alt"></i> Tasikmalaya
@@ -173,19 +179,19 @@
     </header>
 
     <nav class="navbar">
-        <div class="container d-flex align-items-center justify-content-between">
-            <div class="d-flex align-items-center">
-                
-                <input type="text" class="form-control" placeholder="Cari...">
-            </div>
-            <div class="d-flex align-items-center">
-                <a class="nav-link" href="{{ route('seller.dashboard') }}"> Dashboard</a>
-                <a class="nav-link" href="{{ route('penjualan') }}">Penjualan</a>
-                <a class="nav-link" href="{{ route('barang.seller') }}">Barang</a>
-                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="fas fa-user"></i></a>
-            </div>
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <input type="text" class="form-control" placeholder="Cari...">
         </div>
-    </nav>
+        <div class="d-flex align-items-center">
+            <a class="nav-link {{ request()->routeIs('seller.dashboard') ? 'active' : '' }}" href="{{ route('seller.dashboard') }}"> Dashboard</a>
+            <a class="nav-link {{ request()->routeIs('penjualan') ? 'active' : '' }}" href="{{ route('penjualan') }}">Penjualan</a>
+            <a class="nav-link {{ request()->routeIs('barang.seller') ? 'active' : '' }}" href="{{ route('barang.seller') }}">Barang</a>
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="fas fa-user"></i></a>
+        </div>
+    </div>
+</nav>
+
     
 
     <!-- Modal Profil -->

@@ -160,6 +160,12 @@
             border-color: #b1d182;
             color: #fff;
         }
+
+        .nav-link.active {
+    font-weight: bold;
+    color: #2b463c; /* Atau warna yang diinginkan untuk menunjukkan aktif */
+}
+
     </style>
 </head>
 <body>
@@ -173,28 +179,29 @@
     </header>
 
     <nav class="navbar">
-        <div class="container d-flex align-items-center justify-content-between">
-            <div class="d-flex align-items-center">
-                <div class="nav-item dropdown mr-3">
-                    <button class="btn dropdown-toggle" type="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        Kategori
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#" onclick="filterBarang('Elektrik')">Elektrik</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="filterBarang('Akustik')">Akustik</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="filterBarang('Bass')">Bass</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="filterBarang('Aksesoris')">Aksesoris</a></li>
-                    </ul>
-                </div>
-                <input type="text" class="form-control" placeholder="Cari...">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <div class="nav-item dropdown mr-3">
+                <button class="btn dropdown-toggle" type="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Kategori
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#" onclick="filterBarang('Elektrik')">Elektrik</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="filterBarang('Akustik')">Akustik</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="filterBarang('Bass')">Bass</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="filterBarang('Aksesoris')">Aksesoris</a></li>
+                </ul>
             </div>
-            <div class="d-flex align-items-center">
-                <a class="nav-link" href="{{ route('wishlist') }}"><i class="fas fa-heart"></i></a>
-                <a class="nav-link" href="{{ route('cart') }}"><i class="fas fa-shopping-cart"></i></a>
-                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="fas fa-user"></i></a>
-            </div>
+            <input type="text" class="form-control" placeholder="Cari...">
         </div>
-    </nav>
+        <div class="d-flex align-items-center">
+            <a class="nav-link {{ request()->routeIs('wishlist') ? 'active' : '' }}" href="{{ route('wishlist') }}"><i class="fas fa-heart"></i></a>
+            <a class="nav-link {{ request()->routeIs('cart') ? 'active' : '' }}" href="{{ route('cart') }}"><i class="fas fa-shopping-cart"></i></a>
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="fas fa-user"></i></a>
+        </div>
+    </div>
+</nav>
+
     
 
     <!-- Modal Profil -->
