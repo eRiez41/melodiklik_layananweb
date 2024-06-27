@@ -7,6 +7,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
+        /* Tambahkan semua CSS yang sudah ada di sini */
         body {
             background-color: #f4f1e9;
         }
@@ -44,7 +45,7 @@
             margin-right: 10px;
         }
         .navbar .container .d-flex > *:not(:last-child) {
-            margin-right: 15px; /* Menambahkan jarak antar elemen dalam navbar */
+            margin-right: 15px;
         }
         .category-buttons {
             background-color: #f4f1e9;
@@ -114,8 +115,6 @@
             color: #fff !important;
             border: none;
         }
-
-        /* Tambahkan CSS untuk modal profil */
         .modal-content {
             background-color: #2b463c !important;
             color: #fff !important;
@@ -160,18 +159,16 @@
             border-color: #b1d182;
             color: #fff;
         }
-
         .nav-link.active {
-    font-weight: bold;
-    color: #2b463c; /* Atau warna yang diinginkan untuk menunjukkan aktif */
-}
-
+            font-weight: bold;
+            color: #2b463c;
+        }
     </style>
 </head>
 <body>
     <header class="header">
         <div>
-            <h1><a href="{{ route('home') }}" style="color: #fff; text-decoration: none;">Melodiklik</a></h1>
+            <h1><a href="{{ route('admin.dashboard') }}" style="color: #fff; text-decoration: none;">Melodiklik Admin</a></h1>
         </div>
         <div class="location">
             <i class="fas fa-map-marker-alt"></i> Tasikmalaya
@@ -181,28 +178,18 @@
     <nav class="navbar">
     <div class="container d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center">
-            <div class="nav-item dropdown mr-3">
-                <button class="btn dropdown-toggle" type="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    Kategori
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#" onclick="filterBarang('Elektrik')">Elektrik</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="filterBarang('Akustik')">Akustik</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="filterBarang('Bass')">Bass</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="filterBarang('Aksesoris')">Aksesoris</a></li>
-                </ul>
-            </div>
             <input type="text" class="form-control" placeholder="Cari...">
         </div>
         <div class="d-flex align-items-center">
-            <a class="nav-link {{ request()->routeIs('wishlist') ? 'active' : '' }}" href="{{ route('wishlist') }}"><i class="fas fa-heart"></i></a>
-            <a class="nav-link {{ request()->routeIs('cart') ? 'active' : '' }}" href="{{ route('cart') }}"><i class="fas fa-shopping-cart"></i></a>
+            <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">Dashboard</a>
+            <a class="nav-link {{ request()->routeIs('admin.toko') ? 'active' : '' }}" href="{{ route('admin.toko') }}">Toko</a>
             <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="fas fa-user"></i></a>
         </div>
     </div>
 </nav>
 
-    
+
+
 
     <!-- Modal Profil -->
     <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
@@ -231,107 +218,75 @@
                         <div class="mb-3">
                             <label for="profileAddress" class="form-label">Alamat :</label>
                             <span class="profile-info" id="profileAddress">Singaparna, Jawa Barat</span>
-                            <input type="text" class="form-control" id="profileAddressInput" style="                            display: none;">
+                            <input type="text" class="form-control" id="profileAddressInput" style="display: none;">
                         </div>
                         <div class="mb-3">
                             <label for="profilePhone" class="form-label">No. Telepon :</label>
                             <span class="profile-info" id="profilePhone">087624556715</span>
                             <input type="text" class="form-control" id="profilePhoneInput" style="display: none;">
                         </div>
-                        <div id="passwordFields" style="display: none;">
-                            <div class="mb-3">
-                                <label for="currentPassword" class="form-label">Sandi Sekarang :</label>
-                                <input type="password" class="form-control" id="currentPassword">
-                            </div>
-                            <div class="mb-3">
-                                <label for="newPassword" class="form-label">Sandi Baru :</label>
-                                <input type="password" class="form-control" id="newPassword">
-                            </div>
-                            <div class="mb-3">
-                                <label for="confirmPassword" class="form-label">Konfirmasi Sandi Baru :</label>
-                                <input type="password" class="form-control" id="confirmPassword">
-                            </div>
-                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="editProfileButton">Edit Profil</button>
-                    <button type="button" class="btn btn-secondary" id="logoutButton">Logout</button>
-                    <button type="button" class="btn btn-primary" id="saveProfileButton" style="display: none;">Simpan Perubahan</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="editButton">Edit</button>
+                    <button type="button" class="btn btn-success" id="saveButton" style="display: none;">Save</button>
                 </div>
             </div>
         </div>
     </div>
+    <div class="container mt-4">
+        @yield('content')
+    </div>
 
-    @yield('content')
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
     <script>
-        let activeCategory = 'Elektrik';
+        document.getElementById('editButton').addEventListener('click', function() {
+            document.getElementById('profileName').style.display = 'none';
+            document.getElementById('profileEmail').style.display = 'none';
+            document.getElementById('profileAddress').style.display = 'none';
+            document.getElementById('profilePhone').style.display = 'none';
 
-        function filterBarang(kategori) {
-            activeCategory = kategori;
-            $('.product-card-wrapper').hide();
-            $(`.product-card-wrapper[data-kategori="${kategori}"]`).show();
-            setActiveCategory(kategori);
-        }
+            document.getElementById('profileNameInput').style.display = 'block';
+            document.getElementById('profileEmailInput').style.display = 'block';
+            document.getElementById('profileAddressInput').style.display = 'block';
+            document.getElementById('profilePhoneInput').style.display = 'block';
 
-        function showAllBarang() {
-            $('.product-card-wrapper').show();
-        }
+            document.getElementById('editButton').style.display = 'none';
+            document.getElementById('saveButton').style.display = 'inline-block';
+        });
 
-        function setActiveCategory(kategori) {
-            $('.category-buttons .btn').removeClass('active');
-            $(`.category-buttons .btn:contains(${kategori})`).addClass('active');
-        }
+        document.getElementById('saveButton').addEventListener('click', function() {
+            document.getElementById('profileName').textContent = document.getElementById('profileNameInput').value;
+            document.getElementById('profileEmail').textContent = document.getElementById('profileEmailInput').value;
+            document.getElementById('profileAddress').textContent = document.getElementById('profileAddressInput').value;
+            document.getElementById('profilePhone').textContent = document.getElementById('profilePhoneInput').value;
 
-        $(document).ready(function() {
-            filterBarang(activeCategory);
+            document.getElementById('profileName').style.display = 'block';
+            document.getElementById('profileEmail').style.display = 'block';
+            document.getElementById('profileAddress').style.display = 'block';
+            document.getElementById('profilePhone').style.display = 'block';
 
-            $('#editProfileButton').click(function() {
-                $('#profileName, #profileEmail, #profileAddress, #profilePhone').hide();
-                $('#profileNameInput, #profileEmailInput, #profileAddressInput, #profilePhoneInput, #passwordFields').show();
-                $('#profileNameInput').val($('#profileName').text());
-                $('#profileEmailInput').val($('#profileEmail').text());
-                $('#profileAddressInput').val($('#profileAddress').text());
-                $('#profilePhoneInput').val($('#profilePhone').text());
+            document.getElementById('profileNameInput').style.display = 'none';
+            document.getElementById('profileEmailInput').style.display = 'none';
+            document.getElementById('profileAddressInput').style.display = 'none';
+            document.getElementById('profilePhoneInput').style.display = 'none';
 
-                $('#profileModalLabel').text('Edit Profil');
-                $('#editProfileButton').hide();
-                $('#logoutButton').hide();
-                $('#saveProfileButton').show();
-            });
+            document.getElementById('editButton').style.display = 'inline-block';
+            document.getElementById('saveButton').style.display = 'none';
+        });
 
-            $('#saveProfileButton').click(function() {
-                $('#profileName').text($('#profileNameInput').val()).show();
-                $('#profileEmail').text($('#profileEmailInput').val()).show();
-                $('#profileAddress').text($('#profileAddressInput').val()).show();
-                $('#profilePhone').text($('#profilePhoneInput').val()).show();
+        document.getElementById('profileImage').addEventListener('click', function() {
+            document.getElementById('profileImageInput').click();
+        });
 
-                $('#profileNameInput, #profileEmailInput, #profileAddressInput, #profilePhoneInput, #passwordFields').hide();
-                $('#profileModalLabel').text('Profil');
-                $('#editProfileButton').show();
-                $('#logoutButton').show();
-                $('#saveProfileButton').hide();
-            });
-
-            $('#profileImage').click(function() {
-                $('#profileImageInput').click();
-            });
-
-            $('#profileImageInput').change(function() {
-                const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#profileImage').attr('src', e.target.result);
-                    }
-                    reader.readAsDataURL(file);
-                }
-            });
+        document.getElementById('profileImageInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('profileImage').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
         });
     </script>
 </body>
 </html>
-

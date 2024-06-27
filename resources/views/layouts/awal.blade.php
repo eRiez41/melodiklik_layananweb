@@ -160,12 +160,6 @@
             border-color: #b1d182;
             color: #fff;
         }
-
-        .nav-link.active {
-    font-weight: bold;
-    color: #2b463c; /* Atau warna yang diinginkan untuk menunjukkan aktif */
-}
-
     </style>
 </head>
 <body>
@@ -178,91 +172,7 @@
         </div>
     </header>
 
-    <nav class="navbar">
-    <div class="container d-flex align-items-center justify-content-between">
-        <div class="d-flex align-items-center">
-            <div class="nav-item dropdown mr-3">
-                <button class="btn dropdown-toggle" type="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    Kategori
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#" onclick="filterBarang('Elektrik')">Elektrik</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="filterBarang('Akustik')">Akustik</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="filterBarang('Bass')">Bass</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="filterBarang('Aksesoris')">Aksesoris</a></li>
-                </ul>
-            </div>
-            <input type="text" class="form-control" placeholder="Cari...">
-        </div>
-        <div class="d-flex align-items-center">
-            <a class="nav-link {{ request()->routeIs('wishlist') ? 'active' : '' }}" href="{{ route('wishlist') }}"><i class="fas fa-heart"></i></a>
-            <a class="nav-link {{ request()->routeIs('cart') ? 'active' : '' }}" href="{{ route('cart') }}"><i class="fas fa-shopping-cart"></i></a>
-            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="fas fa-user"></i></a>
-        </div>
-    </div>
-</nav>
-
-    
-
-    <!-- Modal Profil -->
-    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="profileModalLabel">Profil</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body d-flex align-items-start">
-                    <div class="text-center">
-                        <img id="profileImage" src="https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg" alt="Foto Profil" class="img-thumbnail profile-image">
-                        <input type="file" id="profileImageInput" style="display: none;" accept="image/*">
-                    </div>
-                    <form id="profileForm" class="profile-form">
-                        <div class="mb-3">
-                            <label for="profileName" class="form-label">Nama :</label>
-                            <span class="profile-info" id="profileName">MelodiKlik</span>
-                            <input type="text" class="form-control" id="profileNameInput" style="display: none;">
-                        </div>
-                        <div class="mb-3">
-                            <label for="profileEmail" class="form-label">Email :</label>
-                            <span class="profile-info" id="profileEmail">melodiklik@gmail.com</span>
-                            <input type="email" class="form-control" id="profileEmailInput" style="display: none;">
-                        </div>
-                        <div class="mb-3">
-                            <label for="profileAddress" class="form-label">Alamat :</label>
-                            <span class="profile-info" id="profileAddress">Singaparna, Jawa Barat</span>
-                            <input type="text" class="form-control" id="profileAddressInput" style="                            display: none;">
-                        </div>
-                        <div class="mb-3">
-                            <label for="profilePhone" class="form-label">No. Telepon :</label>
-                            <span class="profile-info" id="profilePhone">087624556715</span>
-                            <input type="text" class="form-control" id="profilePhoneInput" style="display: none;">
-                        </div>
-                        <div id="passwordFields" style="display: none;">
-                            <div class="mb-3">
-                                <label for="currentPassword" class="form-label">Sandi Sekarang :</label>
-                                <input type="password" class="form-control" id="currentPassword">
-                            </div>
-                            <div class="mb-3">
-                                <label for="newPassword" class="form-label">Sandi Baru :</label>
-                                <input type="password" class="form-control" id="newPassword">
-                            </div>
-                            <div class="mb-3">
-                                <label for="confirmPassword" class="form-label">Konfirmasi Sandi Baru :</label>
-                                <input type="password" class="form-control" id="confirmPassword">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="editProfileButton">Edit Profil</button>
-                    <button type="button" class="btn btn-secondary" id="logoutButton">Logout</button>
-                    <button type="button" class="btn btn-primary" id="saveProfileButton" style="display: none;">Simpan Perubahan</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+   <br>
     @yield('content')
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
