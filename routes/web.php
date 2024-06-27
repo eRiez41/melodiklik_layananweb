@@ -1,12 +1,29 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\BarangController;
-
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SellerDashboardController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SellerController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\AdminSellersController;
+
+// Rute-rute terkait Admin
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Rute Dashboard Admin
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    // Rute Toko Admin
+    Route::get('/toko', function () {
+        return view('admin.toko');
+    })->name('toko');
+});
+
+
+
+
+
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -154,3 +171,11 @@ Route::get('/barang-seller', function () {
 
     return view('seller.barang', ['barangna' => $barangna]);
 })->name('barang.seller');
+
+Route::get('/checkout', function () {
+    return view('checkout');
+})->name('checkout');
+
+Route::get('/transaksi/proses', function () {
+    return view('transaksi');
+})->name('transaksi.proses');
