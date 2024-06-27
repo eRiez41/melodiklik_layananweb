@@ -47,4 +47,24 @@ class BarangController extends Controller
         // Untuk sekarang, hanya redirect ke index dengan pesan sukses
         return redirect()->route('barang.index')->with('success', 'Barang berhasil dihapus.');
     }
+
+    public function show($id)
+    {
+        // Data dummy
+        $barang = [
+            'id' => $id,
+            'nama' => 'Gitar Elektrik',
+            'seri' => 'GE123',
+            'harga' => 2000000,
+            'gambar' => 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/91/MTA-127230354/brd-44261_gitar-elektrik-merk-ibanez-model-jem-flower-bonus-tas-dan-kabel-jack-listrik-murah-jakarta_full01-4c5445d2.jpg',
+            'toko' => 'Toko Musik',
+            'rating' => 4.5
+        ];
+
+        return view('barang.show', compact('barang'));
+    }
+
+    
 }
+
+
