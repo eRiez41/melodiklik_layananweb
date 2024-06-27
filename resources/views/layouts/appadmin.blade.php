@@ -176,17 +176,19 @@
     </header>
 
     <nav class="navbar">
-    <div class="container d-flex align-items-center justify-content-between">
-        <div class="d-flex align-items-center">
-            <input type="text" class="form-control" placeholder="Cari...">
+        <div class="container d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <input type="text" class="form-control" placeholder="Cari...">
+            </div>
+            <div class="d-flex align-items-center">
+                <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                <a class="nav-link {{ request()->routeIs('admin.toko') ? 'active' : '' }}" href="{{ route('admin.toko') }}">Toko</a>
+                <a class="nav-link {{ request()->routeIs('admin.pengguna') ? 'active' : '' }}" href="{{ route('admin.pengguna') }}">Pengguna</a>
+                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="fas fa-user"></i></a>
+            </div>
         </div>
-        <div class="d-flex align-items-center">
-            <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">Dashboard</a>
-            <a class="nav-link {{ request()->routeIs('admin.toko') ? 'active' : '' }}" href="{{ route('admin.toko') }}">Toko</a>
-            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="fas fa-user"></i></a>
-        </div>
-    </div>
-</nav>
+    </nav>
+
 
 
 

@@ -5,8 +5,25 @@
         <h1 class="my-4">Admin Dashboard</h1>
 
         <div class="row mb-4">
+            <!-- Box info untuk total toko -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-3">
+                                <i class="fas fa-store fa-3x text-info"></i>
+                            </div>
+                            <div class="col-9">
+                                <h5 class="card-title">Total Toko</h5>
+                                <p class="card-text">10</p> <!-- Ganti dengan data dinamis -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Box info untuk total barang -->
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
                         <div class="row align-items-center">
@@ -14,42 +31,42 @@
                                 <i class="fas fa-box-open fa-3x text-primary"></i>
                             </div>
                             <div class="col-9">
-                                <h5 class="card-title">Total Products</h5>
-                                <p class="card-text">50</p>
+                                <h5 class="card-title">Total Barang</h5>
+                                <p class="card-text">50</p> <!-- Ganti dengan data dinamis -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Box info untuk kategori barang -->
-            <div class="col-md-4">
+            <!-- Box info untuk total user -->
+            <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-3">
-                                <i class="fas fa-tags fa-3x text-success"></i>
+                                <i class="fas fa-users fa-3x text-secondary"></i>
                             </div>
                             <div class="col-9">
-                                <h5 class="card-title">Total Categories</h5>
-                                <p class="card-text">5</p>
+                                <h5 class="card-title">Total User</h5>
+                                <p class="card-text">100</p> <!-- Ganti dengan data dinamis -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Box info untuk total transaksi -->
-            <div class="col-md-4">
+            <!-- Box info untuk jumlah user aktif -->
+            <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-3">
-                                <i class="fas fa-money-bill-wave fa-3x text-warning"></i>
+                                <i class="fas fa-user-check fa-3x text-success"></i>
                             </div>
                             <div class="col-9">
-                                <h5 class="card-title">Total Transactions</h5>
-                                <p class="card-text">100</p>
+                                <h5 class="card-title">User Aktif</h5>
+                                <p class="card-text">80</p> <!-- Ganti dengan data dinamis -->
                             </div>
                         </div>
                     </div>
@@ -58,11 +75,11 @@
         </div>
 
         <div class="row">
-            <!-- Tabel transaksi terbaru -->
+            <!-- Tabel barang terbaru -->
             <div class="col-md-7">
                 <div class="card">
                     <div class="card-header bg-primary text-white">
-                        Recent Transactions
+                        Barang Terbaru
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -70,70 +87,25 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Customer Name</th>
-                                        <th>Product</th>
-                                        <th>Quantity</th>
-                                        <th>Total</th>
-                                        <th>Date</th>
+                                        <th>Nama Barang</th>
+                                        <th>Toko</th>
+                                        <th>Tanggal</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td>John Doe</td>
                                         <td>Electric Guitar</td>
-                                        <td>1</td>
-                                        <td>$1,500</td>
+                                        <td>Toko Musik Harmoni</td>
                                         <td>2024-06-15</td>
                                     </tr>
                                     <tr>
                                         <td>2</td>
-                                        <td>Jane Smith</td>
                                         <td>Acoustic Guitar</td>
-                                        <td>2</td>
-                                        <td>$2,400</td>
+                                        <td>Toko Seriosa Musik</td>
                                         <td>2024-06-14</td>
                                     </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Michael Johnson</td>
-                                        <td>Drum Set</td>
-                                        <td>1</td>
-                                        <td>$3,000</td>
-                                        <td>2024-06-13</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Sarah Adams</td>
-                                        <td>Keyboard</td>
-                                        <td>1</td>
-                                        <td>$800</td>
-                                        <td>2024-06-12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>David Brown</td>
-                                        <td>Bass Guitar</td>
-                                        <td>1</td>
-                                        <td>$1,200</td>
-                                        <td>2024-06-11</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Lisa Green</td>
-                                        <td>Violin</td>
-                                        <td>1</td>
-                                        <td>$600</td>
-                                        <td>2024-06-10</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>Matthew Wilson</td>
-                                        <td>Saxophone</td>
-                                        <td>1</td>
-                                        <td>$1,000</td>
-                                        <td>2024-06-09</td>
-                                    </tr>
+                                    <!-- Tambahkan baris lain sesuai kebutuhan -->
                                 </tbody>
                             </table>
                         </div>
@@ -141,48 +113,35 @@
                 </div>
             </div>
 
-            <!-- Statistik penjualan dalam bentuk diagram -->
+            <!-- Statistik keaktifan user -->
             <div class="col-md-5">
                 <div class="card">
                     <div class="card-header bg-success text-white">
-                        Sales Statistics
+                        Statistik Keaktifan User
                     </div>
                     <div class="card-body">
-                        <canvas id="salesChart" height="250"></canvas>
+                        <!-- Masukkan chart atau data keaktifan user di sini -->
+                        <canvas id="userActivityChart" height="250"></canvas>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Chart.js untuk diagram statistik penjualan -->
+    <!-- Chart.js untuk diagram statistik keaktifan user -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script>
-        var ctx = document.getElementById('salesChart').getContext('2d');
+        var ctx = document.getElementById('userActivityChart').getContext('2d');
         var myChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
                 datasets: [{
-                    label: 'Sales',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
+                    label: 'User Aktif',
+                    data: [50, 60, 70, 65, 75, 80], // Ganti dengan data dinamis
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
                 }]
             },
             options: {
