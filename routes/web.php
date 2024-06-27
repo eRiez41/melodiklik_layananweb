@@ -5,19 +5,21 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SellerDashboardController;
 use App\Http\Controllers\AdminDashboardController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\SellerController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\AdminSellersController;
+use App\Http\Controllers\AdminPenggunaController;
+use App\Http\Controllers\AdminTokoController;
+
+
 
 // Rute-rute terkait Admin
 Route::prefix('admin')->name('admin.')->group(function () {
     // Rute Dashboard Admin
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    
     // Rute Toko Admin
-    Route::get('/toko', function () {
-        return view('admin.toko');
-    })->name('toko');
+    Route::get('/toko', [AdminTokoController::class, 'index'])->name('toko');
+    
+    // Rute Pengguna Admin
+    Route::get('/pengguna', [AdminPenggunaController::class, 'index'])->name('pengguna');
 });
 
 
